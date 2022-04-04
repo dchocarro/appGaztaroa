@@ -1,20 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from 'react';
+import { View } from 'react-native';
+import Campobase from './componentes/CampobaseComponent';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hola people</Text>
+    <View>
+      <Campobase/>
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'purple',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
