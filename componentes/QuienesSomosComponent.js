@@ -4,7 +4,7 @@ import { Card } from 'react-native-elements';
 import { ListItem, Avatar } from 'react-native-elements';
 import { SafeAreaView, FlatList } from 'react-native';
 import { ACTIVIDADES } from '../comun/actividades';
-
+import { baseUrl } from '../comun/comun';
 
 function Historia() {
 
@@ -58,7 +58,7 @@ class QuienesSomos extends Component {
                     key={index}
                     // onPress={() => navigate('DetalleExcursion', { excursionId: item.id })}
                     bottomDivider>
-                    <Avatar source={require('./imagenes/40Años.png')} />
+                    <Avatar source={{uri: baseUrl + item.imagen}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.nombre}</ListItem.Title>
                         <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
@@ -84,7 +84,7 @@ class QuienesSomos extends Component {
                                 key={index}
                                 // onPress={() => navigate('DetalleExcursion', { excursionId: item.id })}
                                 bottomDivider>
-                                <Avatar source={require('./imagenes/40Años.png')} />
+                                <Avatar source={{uri: baseUrl + item.imagen}} />
                                 <ListItem.Content>
                                     <ListItem.Title>{item.nombre}</ListItem.Title>
                                     <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
