@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { EXCURSIONES } from '../comun/excursiones';
-import { COMENTARIOS } from '../comun/comentarios';
 import { baseUrl } from '../comun/comun';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+  return {
+    comentarios: state.comentarios,
+    excursiones: state.excursiones
+  }
+}
 
 function RenderExcursion(props) {
 
@@ -14,7 +20,7 @@ function RenderExcursion(props) {
       <Card>
         <Card.Title>{excursion.nombre}</Card.Title>
         <Card.Divider />
-        <Card.Image source={{uri: baseUrl + excursion.imagen}}></Card.Image>
+        <Card.Image source={{ uri: baseUrl + excursion.imagen }}></Card.Image>
         <Text style={{ margin: 20 }}>
           {excursion.descripcion}
         </Text>
@@ -75,8 +81,6 @@ class DetalleExcursion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      excursiones: EXCURSIONES,
-      comentarios: COMENTARIOS,
       favoritos: []
     };
   }
@@ -90,12 +94,12 @@ class DetalleExcursion extends Component {
     return (
       <ScrollView>
         <RenderExcursion
-          excursion={this.state.excursiones[+excursionId]}
+          excursion={this.props.excursiones.excursiones[+excursionId]}
           favorita={this.state.favoritos.some(el => el === excursionId)}
           onPress={() => this.marcarFavorito(excursionId)}
         />
         <RenderComentario
-          comentarios={this.state.comentarios.filter((comentario) => comentario.excursionId === excursionId)}
+          comentarios={this.props.comentarios.comentarios.filter((comentario) => comentario.excursionId === excursionId)}
         />
       </ScrollView>
     );
@@ -103,4 +107,4 @@ class DetalleExcursion extends Component {
   }
 }
 
-export default DetalleExcursion;
+export default connect(mapStateToProps)(DetalleExcursion);
