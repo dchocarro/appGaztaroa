@@ -5,12 +5,13 @@ import { ListItem, Avatar } from 'react-native-elements';
 // import { SafeAreaView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { baseUrl } from '../comun/comun';
+import { IndicadorActividad } from './IndicadorActividadComponent';
 
 const mapStateToProps = state => {
     return {
-      actividades: state.actividades
+        actividades: state.actividades
     }
-  }
+}
 
 
 function Historia() {
@@ -22,8 +23,10 @@ function Historia() {
             <Text style={{ margin: 20 }}>
                 El nacimiento del club de montaña Gaztaroa se remonta a la primavera de 1976 cuando jóvenes aficionados a la montaña y pertenecientes a un club juvenil decidieron crear la sección montañera de dicho club. Fueron unos comienzos duros debido sobre todo a la situación política de entonces. Gracias al esfuerzo económico de sus socios y socias se logró alquilar una bajera. Gaztaroa ya tenía su sede social.
                 Desde aquí queremos hacer llegar nuestro agradecimiento a todos los montañeros y montañeras que alguna vez habéis pasado por el club aportando vuestro granito de arena.
+                {"\n\n"}
                 Gracias!
-
+                {"\n\n"}
+                Kaixo Mendizale!
             </Text>
         </Card>
     );
@@ -34,12 +37,13 @@ class QuienesSomos extends Component {
 
     render() {
 
+
         const renderCalendarioItem = ({ item, index }) => {
             return (
                 <ListItem
                     key={index}
                     bottomDivider>
-                    <Avatar source={{uri: baseUrl + item.imagen}} />
+                    <Avatar source={{ uri: baseUrl + item.imagen }} />
                     <ListItem.Content>
                         <ListItem.Title>{item.nombre}</ListItem.Title>
                         <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
@@ -47,34 +51,55 @@ class QuienesSomos extends Component {
                 </ListItem>
             );
         };
-
-        return (
-            <>
+        if (this.props.actividades.isLoading) {
+            return (
                 <ScrollView>
-                    <Historia />
-                    <Card>
-                        <Card.Title>Actividades y recursos</Card.Title>
-                        <Card.Divider />
-                        {/* <FlatList
+                        <Historia />
+                        <Card>
+                            <Card.Title>Actividades y recursos</Card.Title>
+                            <Card.Divider />
+                            <IndicadorActividad />
+                        </Card>
+                    </ScrollView>
+                
+            );
+        } 
+        else if (this.props.actividades.errMess) {
+            return (
+                <View>
+                    <Text>{this.props.actividades.errMess}</Text>
+                </View>
+            );
+        }
+        else {
+            return (
+                <>
+                    <ScrollView>
+                        <Historia />
+                        <Card>
+                            <Card.Title>Actividades y recursos</Card.Title>
+                            <Card.Divider />
+                            {/* <FlatList
                             data={this.state.actividades}
                             renderItem={renderCalendarioItem}
                             keyExtractor={item => item.id.toString()}
                         /> */}
-                        {this.props.actividades.actividades.map((item, index) => (
-                            <ListItem
-                                key={index}
-                                bottomDivider>
-                                <Avatar source={{uri: baseUrl + item.imagen}} />
-                                <ListItem.Content>
-                                    <ListItem.Title>{item.nombre}</ListItem.Title>
-                                    <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
-                                </ListItem.Content>
-                            </ListItem>
+                            {this.props.actividades.actividades.map((item, index) => (
+                                <ListItem
+                                    key={index}
+                                    bottomDivider>
+                                    <Avatar source={{ uri: baseUrl + item.imagen }} />
+                                    <ListItem.Content>
+                                        <ListItem.Title>{item.nombre}</ListItem.Title>
+                                        <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
+                                    </ListItem.Content>
+                                </ListItem>
                             ))}
-                    </Card>
-                </ScrollView>
-            </>
-        );
+                        </Card>
+                    </ScrollView>
+                </>
+            );
+        }
     }
 }
 
