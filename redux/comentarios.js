@@ -7,6 +7,11 @@ export const comentarios = (state = { errMess: null, comentarios:[]}, action) =>
 
     case ActionTypes.COMENTARIOS_FAILED:
       return {...state, errMess: action.payload};
+    
+      case ActionTypes.ADD_COMENTARIO:
+        aux=state.comentarios.concat(action.payload);
+        console.log(aux)
+        return {...state, errMess: null, comentarios: aux};
 
     default:
       return state;
