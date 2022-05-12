@@ -10,7 +10,7 @@ export const comentarios = (state = { errMess: null, comentarios:[]}, action) =>
     
       case ActionTypes.ADD_COMENTARIO:
         aux=state.comentarios.concat(action.payload);
-        console.log(aux)
+        // console.log(aux)
         return {...state, errMess: null, comentarios: aux};
 
     default:
