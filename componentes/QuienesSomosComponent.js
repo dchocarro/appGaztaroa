@@ -4,7 +4,7 @@ import { Card } from 'react-native-elements';
 import { ListItem, Avatar } from 'react-native-elements';
 // import { SafeAreaView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { baseUrl } from '../comun/comun';
+import { imagenesUrl } from '../comun/comun';
 import { IndicadorActividad } from './IndicadorActividadComponent';
 
 const mapStateToProps = state => {
@@ -43,7 +43,7 @@ class QuienesSomos extends Component {
                 <ListItem
                     key={index}
                     bottomDivider>
-                    <Avatar source={{ uri: baseUrl + item.imagen }} />
+                    <Avatar source={{ uri: imagenesUrl + item.imagen.split("/")[1] + "?alt=media" }} />
                     <ListItem.Content>
                         <ListItem.Title>{item.nombre}</ListItem.Title>
                         <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
@@ -88,7 +88,7 @@ class QuienesSomos extends Component {
                                 <ListItem
                                     key={index}
                                     bottomDivider>
-                                    <Avatar source={{ uri: baseUrl + item.imagen }} />
+                                    <Avatar source={{ uri: imagenesUrl + item.imagen.split("/")[1] + "?alt=media" }} />
                                     <ListItem.Content>
                                         <ListItem.Title>{item.nombre}</ListItem.Title>
                                         <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>

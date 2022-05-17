@@ -13,7 +13,7 @@ export const addFavorito = (excursionId) => ({
 });
 
 export const fetchComentarios = () => (dispatch) => {
-    return fetch(baseUrl + 'comentarios')
+    return fetch(baseUrl + 'comentarios.json')
         .then(response => {
             if (response.ok) {
                 return response;
@@ -46,7 +46,7 @@ export const fetchExcursiones = () => (dispatch) => {
 
     dispatch(excursionesLoading());
 
-    return fetch(baseUrl + 'excursiones')
+    return fetch(baseUrl + 'excursiones.json')
         .then(response => {
             if (response.ok) {
                 return response;
@@ -83,7 +83,7 @@ export const fetchCabeceras = () => (dispatch) => {
 
     dispatch(cabecerasLoading());
 
-    return fetch(baseUrl + 'cabeceras')
+    return fetch(baseUrl + 'cabeceras.json')
         .then(response => {
             if (response.ok) {
                 return response;
@@ -120,7 +120,7 @@ export const fetchActividades = () => (dispatch) => {
 
     dispatch(actividadesLoading());
 
-    return fetch(baseUrl + 'actividades')
+    return fetch(baseUrl + 'actividades.json')
         .then(response => {
             if (response.ok) {
                 return response;
@@ -155,16 +155,17 @@ export const addActividades = (actividades) => ({
 
 export const postComentario = (comentario) => (dispatch) => {
     // console.log(comentario);
-    setTimeout(() => {
+
+    // setTimeout(() => {
         dispatch(addComentario(comentario));
-    }, 2000);
+    // }, 2000);
 };
 
 
 
 export const addComentario = (comentario) => ({
-    
+
     type: ActionTypes.ADD_COMENTARIO,
     payload: comentario
-    
+
 })

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useState } from 'react';
 import { Modal, Text, View, ScrollView, FlatList, Alert, StyleSheet, Pressable, Input, TextInput } from 'react-native';
 import { Card, Icon, Rating } from 'react-native-elements';
-import { baseUrl } from '../comun/comun';
+import { imagenesUrl } from '../comun/comun';
 import { connect } from 'react-redux';
 import { postFavorito, postComentario } from '../redux/ActionCreators';
 
@@ -30,7 +30,7 @@ function RenderExcursion(props) {
       <Card>
         <Card.Title>{excursion.nombre}</Card.Title>
         <Card.Divider />
-        <Card.Image source={{ uri: baseUrl + excursion.imagen }}></Card.Image>
+        <Card.Image source={{ uri: imagenesUrl + excursion.imagen.split("/")[1] + "?alt=media" }}></Card.Image>
         <Text style={{ margin: 20 }}>
           {excursion.descripcion}
         </Text>
@@ -196,6 +196,7 @@ class DetalleExcursion extends Component {
   }
 
   render() {
+    // console.log(this.props.comentarios.comentarios)
     const { excursionId } = this.props.route.params;
     return (
       <>

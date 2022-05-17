@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
+import * as MailComposer from 'expo-mail-composer';
+
+async function sendEmailAsync() {
+  let result = await MailComposer.composeAsync({
+    recipients: ['gaztaroa@gaztaroa.com'],
+    subject: '',
+    body: '',
+  });
+
+  alert(result.status);
+}
 
 function RenderContacto() {
 
@@ -17,16 +28,24 @@ function RenderContacto() {
         Tel: +34 948 277151
         {"\n\n"}
         Email: gaztaroa@gaztaroa.com
+        {"\n\n"}
+        ¡Envíanos un correo con tus dudas o sugerencias!
       </Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: "center" }}>
+        <Button title="Enviar correo" onPress={sendEmailAsync} />
+      </View>
+      
     </Card>
   );
 
 }
 
+
+
 class Contacto extends Component {
 
   render() {
-    return (<RenderContacto />);
+    return (<RenderContacto/>);
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { Card } from 'react-native-elements';
-import { baseUrl } from '../comun/comun';
+import { imagenesUrl } from '../comun/comun';
 import { connect } from 'react-redux';
 import { IndicadorActividad } from './IndicadorActividadComponent';
 
@@ -37,7 +37,7 @@ function RenderItem(props) {
                 <Card>
 
                     <Card.Divider />
-                    <Card.Image source={{ uri: baseUrl + item.imagen }}><Card.Title style={{ color: 'chocolate' }}>{item.nombre}</Card.Title></Card.Image>
+                    <Card.Image source={{ uri: imagenesUrl + item.imagen.split("/")[1] + "?alt=media"}}><Card.Title style={{ color: 'chocolate' }}>{item.nombre}</Card.Title></Card.Image>
                     <Text style={{ margin: 20 }}>
                         {item.descripcion}
                     </Text>
